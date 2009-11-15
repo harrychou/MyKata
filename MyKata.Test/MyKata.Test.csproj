@@ -74,7 +74,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="KataPotterSpec1.cs" />
+    <Compile Include="EnumerableExtension.cs" />
+    <Compile Include="KataPotterSpec.cs" />
+    <Compile Include="PotterBook.cs" />
+    <Compile Include="PotterBookBasket.cs" />
+    <Compile Include="PotterBookComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
