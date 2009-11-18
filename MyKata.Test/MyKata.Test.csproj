@@ -73,13 +73,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookBasketPriceCalculator.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="EnumerableExtension.cs" />
+    <Compile Include="GroupingProtocol.cs" />
+    <Compile Include="IBookBasketPriceCalculator.cs" />
     <Compile Include="KataPotterSpec.cs" />
     <Compile Include="PotterBook.cs" />
     <Compile Include="PotterBookBasket.cs" />
     <Compile Include="PotterBookComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProtocolGenerator.cs" />
+    <Compile Include="TreeNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

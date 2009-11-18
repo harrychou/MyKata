@@ -12,6 +12,7 @@ namespace MyKata.Test
         }
     }
 
+    [TestFixture]
     public class FibonacciTest
     {
         [Test]
