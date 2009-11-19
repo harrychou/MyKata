@@ -2,18 +2,15 @@
 using System;
 
 
-namespace MyKata.Test
+namespace MyKata.KataPotter
 {
     public class PotterBook: IEquatable<PotterBook>
     {
         string title;
-        public double Price = 8;
-        public double Discount { get; set; }
-
+    
         PotterBook(int i)
         {
             title = "Potter Book " + i;
-            Discount = 1;
         }
 
         public string Title
@@ -31,10 +28,5 @@ namespace MyKata.Test
             return this.Title.Equals(other.Title);
         }
 
-        public double GetFinalPrice()
-        {
-            return Discount* Price;
-        }
     }
-
 }

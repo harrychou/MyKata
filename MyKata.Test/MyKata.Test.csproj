@@ -73,18 +73,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookBasketPriceCalculator.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="EnumerableExtension.cs" />
-    <Compile Include="GroupingProtocol.cs" />
-    <Compile Include="IBookBasketPriceCalculator.cs" />
     <Compile Include="KataPotterSpec.cs" />
-    <Compile Include="PotterBook.cs" />
-    <Compile Include="PotterBookBasket.cs" />
-    <Compile Include="PotterBookComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProtocolGenerator.cs" />
-    <Compile Include="TreeNode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyKata.KataPotter\MyKata.KataPotter.csproj">
+      <Project>{F6D20D01-8762-4166-B345-8D2D4C655627}</Project>
+      <Name>MyKata.KataPotter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

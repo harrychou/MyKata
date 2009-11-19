@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MyKata.Test
+namespace MyKata.KataPotter
 {
-    class TitleCalculatorTreeNode : TreeNode<MyClass>
+    class TitleCalculatorTreeNode : TreeNode<TreeNodeItem>
     {
-        readonly Func<int, double> _getDiscountFor;
+         readonly Func<int, double> _getDiscountFor;
         public int Remainder;
         public double RemainderPrice;
         string _stringKey;
-        static double _unitPrice = 8;
+        double _unitPrice = 8;
 
 
-        public TitleCalculatorTreeNode(TreeNode<MyClass> parent,
-            MyClass myClass, Func<int, double> getDiscountFor)
-            : base(parent, myClass)
+        public TitleCalculatorTreeNode(TreeNode<TreeNodeItem> parent,
+            TreeNodeItem treeNodeItem, Func<int, double> getDiscountFor, double unitPrice)
+            : base(parent, treeNodeItem)
         {
+            _unitPrice = unitPrice;
             _getDiscountFor = getDiscountFor;
-            _stringKey = GetStringKey(myClass.items_to_calculate);
+            _stringKey = GetUniqueStringRepresentation(treeNodeItem.items_to_calculate);
         }
 
         public override string ToString()
@@ -65,8 +66,8 @@ namespace MyKata.Test
                     var newItemList = Clone(_obj.items_to_calculate);
 
                     _children.Add(new TitleCalculatorTreeNode(this,
-                        new MyClass { grouping = g, items_to_calculate = ApplyGrouping(newItemList, g) }                        
-                        ,_getDiscountFor));
+                        new TreeNodeItem { grouping = g, items_to_calculate = ApplyGrouping(newItemList, g) }                        
+                        ,_getDiscountFor, _unitPrice));
                 }
 
                 var result = double.MaxValue;
@@ -146,12 +147,12 @@ namespace MyKata.Test
             }
         }
 
-        string GetStringKey(IEnumerable<string> titles)
+        string GetUniqueStringRepresentation(IEnumerable<string> titles)
         {
             var counts =
                 titles
                 .GroupBy(item => item.ToString())
-                .Select(g => new { Key = g.Key, Frequency = g.Count() })
+                .Select(g => new { Frequency = g.Count() })
                 .OrderByDescending(g => g.Frequency);
 
             var sb = new StringBuilder();
@@ -163,7 +164,7 @@ namespace MyKata.Test
         }
     }
 
-    class MyClass 
+    class TreeNodeItem 
     {
         public IList<string> items_to_calculate = new List<string>();
         public IList<string> grouping = new List<string>() ;

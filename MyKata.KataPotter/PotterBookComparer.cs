@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MyKata.Test
+namespace MyKata.KataPotter
 {
     public class PotterBookComparer : IEqualityComparer<PotterBook>
     {

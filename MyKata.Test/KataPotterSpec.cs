@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdddoc.core;
+using MyKata.KataPotter;
+
 
 namespace MyKata.Test
 {
