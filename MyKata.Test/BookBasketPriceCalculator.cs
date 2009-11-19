@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MyKata.Test
 {
@@ -23,44 +21,14 @@ namespace MyKata.Test
 
             IList<string> titles = new List<string>(books.Select(book => book.Title));
 
-            var minimumTotal = double.MaxValue;
-            var protocols = GetAllPossibleGroupingProtocols(titles,  new ProtocolGenerator());
-            foreach (var protocol in protocols)
-            {
-                var temp = GetPriceForProtocol(protocol) * 8;
-                minimumTotal = GetMinimum(minimumTotal, temp);
-            }
-            return minimumTotal;
+            var rootNode = new TitleCalculatorTreeNode(null,
+                new MyClass {grouping = new List<string>(), items_to_calculate = titles},
+                GetVolumnDiscountFor);
+
+            IDictionary<string, double> priceLookUp = new Dictionary<string, double>();
+            return rootNode.CalculatePrice(priceLookUp);
         }
 
-        IEnumerable<GroupingProtocol> GetAllPossibleGroupingProtocols(IList<string> titles, ProtocolGenerator generator)
-        {
-           return generator.GenerateProtocols(titles);
-        }
-
-
-   
-        double GetPriceForProtocol(GroupingProtocol protocol)
-        {
-            double result = 0;
-            var sb = new StringBuilder();
-            foreach (var group in protocol.Groups)
-            {
-                var count = group.Count();
-                result += GetVolumnDiscountFor(count) * count;
-                sb.Append("Add group of " + count + "...");
-            }
-            sb.Append("Remainder " + protocol.Remainder + "...");
-            Console.WriteLine(sb.ToString());
-            return result + protocol.Remainder;
-        }
-
-
-        double GetMinimum(double total, double groupingTotal)
-        {
-            if (total < groupingTotal) return total;
-            return groupingTotal;
-        }
 
         double GetTotal(IEnumerable<PotterBook> books)
         {
@@ -72,7 +40,7 @@ namespace MyKata.Test
             return total;
         }
 
-        double GetVolumnDiscountFor(int count)
+        static double GetVolumnDiscountFor(int count)
         {
             if (count == 1) return 1;
             if (count == 2) return .95;
